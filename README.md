@@ -67,75 +67,215 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 =======
 
-### 🛒 Tugas Web 2 - CRUD Laravel Produk
+# 📦 CRUD Produk - Laravel 12
 
-Project ini adalah aplikasi manajemen produk sederhana (Create, Read, Update, Delete) yang dibangun menggunakan **Laravel 11**. Tugas ini dikerjakan untuk memenuhi mata kuliah Web Programming 2.
+Aplikasi web sederhana berbasis **Laravel 12** yang digunakan untuk mengelola data produk dengan fitur **CRUD (Create, Read, Update, Delete)**. Project ini dibuat sebagai latihan/pembelajaran penggunaan framework Laravel dengan database MySQL.
 
-## 🚀 Fitur Utama
-* **Menampilkan Data:** Daftar produk dengan paginasi.
-* **Tambah Data:** Input produk baru (Nama, Kode, Harga, Stok).
-* **Edit Data:** Memperbarui informasi produk yang sudah ada.
-* **Hapus Data:** Menghapus produk dari database.
-* **Validasi:** Form input sudah dilengkapi validasi (contoh: Kode produk harus unik).
-
-## 🛠️ Teknologi yang Digunakan
-* **Framework:** [Laravel 12](https://laravel.com/)
-* **Bahasa:** PHP 8.2+
-* **Database:** MySQL
-* **Styling:** Bootstrap (atau sebutkan jika pakai Tailwind)
-
-## 💻 Cara Menjalankan Project di Lokal
-
-Ikuti langkah-langkah berikut untuk menjalankan project ini di komputer kamu:
-
-1. **Clone Repository**
-   ```bash
-   git clone [https://github.com/Thomas41012/Tugas_Web2_CrudLaravel.git](https://github.com/Thomas41012/Tugas_Web2_CrudLaravel.git)
-   cd Tugas_Web2_CrudLaravel
-2. **Instal Dependency**
-   ```Bash
-   composer install
-   ```
-3. **Konfigurasi Environment**
-   Salin file .env.example menjadi .env dan atur koneksi database kamu.
-   ```Bash
-   cp .env.example .env
-   ```
-4. **Generate App Key**
-   ```Bash
-   php artisan key:generate
-   ```
-5. **Migrasi Database**
-   Pastikan database sudah dibuat di MySQL, lalu jalankan:
-   ```Bash
-   php artisan migrate
-   ```
-6.  **Jalankan Server**
-   ```Bash
-   php artisan serve
-   Buka http://127.0.0.1:8000 di browser kamu.
-   ```
-👤 Author
-Nama: Thomas
-
-GitHub: @Thomas41012
-
-Tugas ini dibuat untuk keperluan pembelajaran akademik.
-
-```
 ---
 
-### Cara Update ke GitHub:
-Setelah file `README.md` dibuat dan di-save, jangan lupa kirim lagi ke GitHub lewat VS Code:
-1.  Buka tab **Source Control** (Ctrl+Shift+G).
-2.  Klik **+** pada file `README.md`.
-3.  Tulis pesan commit: `Tambah file README`.
-4.  Klik **Commit**, lalu klik **Sync Changes**.
+## ✨ Fitur Utama
+
+* ✅ Menampilkan daftar produk
+* ➕ Menambahkan data produk
+* ✏️ Mengedit data produk
+* ❌ Menghapus data produk
+* 📄 Pagination (pembagian halaman)
+
+---
+
+## 🛠️ Teknologi yang Digunakan
+
+| Teknologi  | Keterangan               |
+| ---------- | ------------------------ |
+| PHP 8+     | Bahasa pemrograman utama |
+| Laravel 12 | Framework backend        |
+| MySQL      | Database                 |
+| Bootstrap  | (Opsional) UI Styling    |
+
+---
+
+## ⚙️ Instalasi & Setup
+
+Ikuti langkah-langkah berikut untuk menjalankan project di lokal:
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/username/nama-repository.git
+cd nama-repository
 ```
-# KESIMPULAN
-Laravel 12 menawarkan berbagai peningkatan yang memudahkan pengembangan aplikasi web yang kuat dan skalabel. Dengan mamahami konsep dasar CRUD, Anda telah membangun fondasi yang kokoh untuk mengembangkan aplikasi yang lebih kompleks dimasa depan
 
-<img width="480" height="480" alt="GraduationCapThumbsUpGIF" src="https://github.com/user-attachments/assets/792b1032-6369-4c72-bc34-5859e0df11f1" />
+### 2. Install Dependency
 
-Selamat Berkarya!
+```bash
+composer install
+```
 
+### 3. Copy File Environment
+
+```bash
+cp .env.example .env
+```
+
+### 4. Generate Application Key
+
+```bash
+php artisan key:generate
+```
+
+### 5. Konfigurasi Database
+
+Buka file `.env`, lalu sesuaikan dengan database kamu:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=nama_database
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+---
+
+### 6. Migrasi Database
+
+```bash
+php artisan migrate
+```
+
+---
+
+### 7. Jalankan Server
+
+```bash
+php artisan serve
+```
+
+Akses aplikasi melalui browser:
+
+```
+http://127.0.0.1:8000/product
+```
+
+---
+
+## 📁 Struktur Project
+
+```
+app/
+ ├── Models/
+ │    └── Product.php
+ ├── Http/
+ │    └── Controllers/
+ │         └── ProductController.php
+
+database/
+ └── migrations/
+      └── create_products_table.php
+
+resources/
+ └── views/
+      └── product/
+           ├── index.blade.php
+           ├── create.blade.php
+           ├── edit.blade.php
+           └── show.blade.php
+
+routes/
+ └── web.php
+```
+
+---
+
+## 🔗 Routing
+
+```php
+Route::resource('product', ProductController::class);
+```
+
+---
+
+## 🧩 Struktur Database
+
+Tabel: `products`
+
+| Field      | Tipe      | Keterangan   |
+| ---------- | --------- | ------------ |
+| id         | bigint    | Primary Key  |
+| name       | string    | Nama produk  |
+| code       | string    | Kode produk  |
+| price      | decimal   | Harga produk |
+| created_at | timestamp | Waktu dibuat |
+| updated_at | timestamp | Waktu update |
+
+---
+
+## 🚀 Cara Deploy ke GitHub
+
+### 1. Inisialisasi Git
+
+```bash
+git init
+git add .
+git commit -m "Initial commit - CRUD Produk Laravel 12"
+```
+
+### 2. Hubungkan ke Repository
+
+```bash
+git remote add origin https://github.com/username/nama-repository.git
+```
+
+### 3. Push ke GitHub
+
+```bash
+git branch -M main
+git push -u origin main
+```
+
+---
+
+## ⚠️ Troubleshooting
+
+### ❌ Push Ditolak (Rejected)
+
+```bash
+git pull origin main --allow-unrelated-histories
+git push -u origin main
+```
+
+### ❌ Error View Not Found
+
+Pastikan folder:
+
+```
+resources/views/product/
+```
+
+sudah berisi file blade:
+
+* index.blade.php
+* create.blade.php
+* edit.blade.php
+
+---
+
+## 👨‍💻 Author
+
+* **Nama**  : Thomas Christhoper Simanungkalit
+* **Github**   : @Thomas41012
+* **Kelas** : (Opsional)
+---
+
+## 📌 Catatan
+
+Project ini dibuat untuk keperluan pembelajaran dan dapat dikembangkan lebih lanjut seperti:
+
+* 🔍 Fitur pencarian produk
+* 🔐 Sistem login (authentication)
+* 📊 Dashboard admin
+
+---
+
+⭐ Jangan lupa beri **star** jika project ini membantu!
